@@ -12,16 +12,16 @@
         );
         copy_promise
           .then(() => {
-            alert("Text has been copied!");
+            showError("Text has been copied!");
           })
           .catch((error) => {
-            console.error("Failed to copy! " + error);
+            showError("Failed to copy! " + error);
           });
       } else {
         if (navigator.clipboard) {
-          alert("input is empty");
+          showError("input is empty");
         } else {
-          alert("clipboard is not available!");
+          showError("clipboard is not available!");
         }
       }
     });
@@ -37,10 +37,10 @@
             document.querySelector("#paragraph_1").innerHTML = text;
           })
           .catch((error) => {
-            console.error("Failed to read text! " + error);
+            showError("Failed to read text! " + error);
           });
       } else {
-        alert("clipboard is not available!");
+        showError("clipboard is not available!");
       }
     });
 
@@ -63,7 +63,7 @@
             position.coords.longitude;
         });
       } else {
-        alert('Browser doesn\'t support "geolocation"');
+        showError('Browser doesn\'t support "geolocation"');
       }
     });
   // function that returns a promise
@@ -94,10 +94,10 @@
           document.querySelector("#timer_p").innerHTML = text;
         })
         .catch((error) => {
-          alert(error);
+          showError(error);
         });
     } else {
-      alert("you need to fill both text fields");
+      showError("you need to fill both text fields");
     }
   });
 
@@ -114,10 +114,18 @@
         );
         document.querySelector("#timer_p").innerHTML = text;
       } catch (error) {
-        alert(error);
+        showError(error);
       }
     } else {
-      alert("you need to fill both text fields");
+      showError("you need to fill both text fields");
     }
+  }
+  // show error
+  function showError(text) {
+    document.querySelector("#show_error").innerHTML = text;
+    document.querySelector("#show_error").style.color = "red";
+    setTimeout(() => {
+      document.querySelector("#show_error").innerHTML = "";
+    }, 4000);
   }
 })();
