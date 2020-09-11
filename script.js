@@ -30,7 +30,7 @@
   document
     .querySelector("#clipboard_paste_btn")
     .addEventListener("click", () => {
-      if (navigator.clipboard) {
+      if (navigator.clipboard && navigator.clipboard.readText) {
         let readText_promise = navigator.clipboard.readText();
         readText_promise
           .then((text) => {
